@@ -2,8 +2,8 @@
 FROM python:3.12-slim
 
 # Set environment variables
-ENV PYTHONDONTWRITEBYTECODE 1
-ENV PYTHONUNBUFFERED 1
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV PYTHONUNBUFFERED=1
 
 # Set working directory
 WORKDIR /app
@@ -27,4 +27,6 @@ EXPOSE 8000
 
 # # Run the Django development server
 # CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"] or
-CMD ["gunicorn", "myproject.wsgi:application", "--bind", "0.0.0.0:8000"]
+
+
+CMD ["gunicorn", "backend.wsgi:application", "--bind", "0.0.0.0:8000"]

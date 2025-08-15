@@ -5,3 +5,5 @@ djangorestframework==3.16.1
 python-dotenv==1.1.1
 sqlparse==0.5.3
 psycopg2
+gunicorn
+django-environ
