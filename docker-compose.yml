@@ -1,4 +1,4 @@
-version: '3.9'
+# version: '3.9'
 
 services:
   db:
@@ -10,29 +10,31 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data
     ports:
-      - "5432:5432"
+      - "5433:5432"
+    env_file:
+      - ./backend/.env
+
 
   backend:
     build: ./backend
-    command: gunicorn myproject.wsgi:application --bind 0.0.0.0:8000
+    command: gunicorn backend.wsgi:application --bind 0.0.0.0:8000
     volumes:
       - ./backend:/app
     ports:
       - "8000:8000"
     depends_on:
       - db
-    env_file:
-      - ./backend/.env
+    
 
   frontend:
     build: ./frontend
-    command: npm run serve
+    command: npm run dev
     working_dir: /app
     volumes:
       - ./frontend:/app
       - /app/node_modules
     ports:
-      - "8080:8080"
+      - "5173:5173"
     depends_on:
       - backend
 
