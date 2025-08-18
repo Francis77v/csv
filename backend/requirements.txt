@@ -7,3 +7,4 @@ sqlparse==0.5.3
 psycopg2
 gunicorn
 django-environ
+djangorestframework-simplejwt
